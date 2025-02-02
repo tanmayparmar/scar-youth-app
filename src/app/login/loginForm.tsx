@@ -29,11 +29,11 @@ export function LoginForm() {
                 <div>
                     <Input
                         id="email"
+                        name="email"
                         label="Email"
                         type="email"
                         placeholder="Enter your email address"
                         isRequired
-                        isInvalid={errorMessage?.errors?.email}
                         errorMessage="Please enter a valid email"
                     />
                 </div>
@@ -45,8 +45,7 @@ export function LoginForm() {
                         label="Password"
                         variant="bordered"
                         placeholder="Enter your password"
-                        isInvalid={errorMessage?.errors?.password}
-                        errorMessage="Please enter a valid email"
+                        errorMessage="Please enter a valid password"
                         endContent={
                             <button className="focus:outline-none" type="button" onClick={toggleVisibility} aria-label="toggle password visibility">
                                 {isVisible ? (

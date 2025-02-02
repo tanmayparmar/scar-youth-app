@@ -2,8 +2,7 @@
 import { AUTH_USER, COOKIE_NAME } from 'app/constant';
 import { cookies } from 'next/headers';
 import { LOGIN_MUTATION } from './mutations';
-import { query } from './apolloClient';
-import { useMutation } from '@apollo/client';
+import { getClient } from './apolloClient';
 
 interface LoginCredentials {
   email: string;
@@ -46,18 +45,16 @@ export const userSession = async () => {
 export const directusLogin = async (
   credentials: LoginCredentials
 ): Promise<User> => {
-
-  const [mutate, { loading: mutationLoading }] =
-    useMutation(AnswerPollDocument);
-    
   const DIRECTUS_URL = process.env.DIRECTUS_URL;
   if (!DIRECTUS_URL) {
     throw new Error('Environment variable DIRECTUS_URL is not set');
   }
+
   const email = credentials.email;
   const password = credentials.password;
+  const client = getClient();
   try {
-    const { data } = await query.mutate({
+    const { data } = await client.mutate({
       mutation: LOGIN_MUTATION,
       variables: { email, password },
     });

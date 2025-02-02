@@ -18,7 +18,7 @@ export default function Page() {
                 aria-label="Actions"
                 onAction={(key) => alert(key)}
             >
-                {data.peoples.map((people: { id: number; first_name: string; last_name: string; photo: string }) => (
+                {data.people.map((people: { id: number; first_name: string; last_name: string; photo: string }) => (
                     <ListboxItem key={people.id} textValue={people.first_name}><User
                         name={people.first_name + ' ' + people.last_name}
                         description="Product Designer"
