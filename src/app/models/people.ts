@@ -11,7 +11,7 @@ export interface People {
   phone: string;
   date_of_birth: any;
   email: any;
-  house_id: number;
+  house_id: { name: string };
   status: string;
   college: any;
   course: any;
@@ -30,6 +30,10 @@ export interface People {
   emergency_contact_name: any;
   emergency_contact_phone: any;
   public_notes: any;
-  photo: any;
+  photo: {
+    id: string;
+    type: string;
+    title: string;
+  };
   attendances: any[];
 }

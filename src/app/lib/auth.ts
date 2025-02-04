@@ -3,6 +3,7 @@ import { AUTH_USER, COOKIE_NAME } from 'app/constant';
 import { cookies } from 'next/headers';
 import { LOGIN_MUTATION } from './mutations';
 import { getClient } from './apolloClient';
+import { HttpLink } from '@apollo/client';
 
 interface LoginCredentials {
   email: string;
@@ -54,6 +55,11 @@ export const directusLogin = async (
   const password = credentials.password;
   const client = getClient();
   try {
+    const httpLink = new HttpLink({
+      uri: process.env.NEXT_PUBLIC_DIRECTUS_SYSTEM_GRAPHQL_URL!,
+    });
+    
+    client.setLink(httpLink);
     const { data } = await client.mutate({
       mutation: LOGIN_MUTATION,
       variables: { email, password },
@@ -65,7 +71,7 @@ export const directusLogin = async (
       throw new Error(message);
     }
 
-    const user = data.auth_login;
+    const user = data.auth_login.access_token;
     const formatedData = JSON.stringify(user);
     const cookie = await cookies();
     cookie.set(COOKIE_NAME, formatedData);

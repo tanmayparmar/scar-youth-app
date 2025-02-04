@@ -5,11 +5,11 @@ import {
   registerApolloClient,
 } from '@apollo/experimental-nextjs-app-support';
 
-const DIRECTUS_SYSTEM_GRAPHQL_URL =
-  process.env.NEXT_PUBLIC_DIRECTUS_SYSTEM_GRAPHQL_URL;
+const DIRECTUS_GRAPHQL_URL = process.env.NEXT_PUBLIC_DIRECTUS_GRAPHQL_URL;
 
 const httpLink = new HttpLink({
-  uri: DIRECTUS_SYSTEM_GRAPHQL_URL,
+  uri: DIRECTUS_GRAPHQL_URL,
+  credentials: 'include',
 });
 
 export const { getClient, query, PreloadQuery } = registerApolloClient(() => {
@@ -18,5 +18,3 @@ export const { getClient, query, PreloadQuery } = registerApolloClient(() => {
     link: httpLink,
   });
 });
-
-

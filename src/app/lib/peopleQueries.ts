@@ -5,7 +5,11 @@ export const GET_PEOPLES = gql`
   query {
     people {
       id
-      photo
+      photo {
+        id
+        type
+        title
+      }
       first_name
       last_name
       date_of_birth

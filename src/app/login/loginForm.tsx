@@ -6,7 +6,7 @@ import {
     ExclamationCircleIcon,
 } from "@heroicons/react/24/outline";
 import { ArrowRightIcon } from "@heroicons/react/20/solid";
-import { Button, Input } from '@nextui-org/react';
+import { Button, Input } from "@heroui/react";
 import React from 'react';
 import { EyeSlashFilledIcon } from 'app/ui/EyeSlashFilledIcon';
 import { EyeFilledIcon } from 'app/ui/EyeFilledIcon';
@@ -56,7 +56,7 @@ export function LoginForm() {
                             </button>
                         }
                         type={isVisible ? "text" : "password"}
-                        className="max-w-xs"
+                        className="max-w-xs text-gray"
                     />
                 </div>
                 {/* Submit Button */}
