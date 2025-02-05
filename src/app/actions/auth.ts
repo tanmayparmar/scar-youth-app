@@ -19,18 +19,12 @@ export const login = async (prevState: any, formData: FormData) => {
   // Perform login
   // Attempt to login the user
   const user = await directusLogin({ email, password }).catch((error: any) => {
+    // If login fails, return an error object
     console.error('Login failed:', error);
-    return null;
-  });
-
-  // If login fails, return an error object
-  if (!user) {
     return {
-      errors: {
-        general: 'Invalid credentials or server error. Please try again.',
-      },
+      errors: error,
     };
-  }
+  });
 
   // Redirect to the dashboard on success
   redirect('/dashboard');
